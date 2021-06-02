@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
     {% block title %}
-        Blog post
+        {{ post.title_tag }}
     {% endblock %}
 
 
@@ -15,7 +15,7 @@
                 {{ post.title }}
             </h1><br>
             <small>
-                By: {{ post.author.first_name }} {{ post.author.last_name }}
+                By: <b>{{ post.author.first_name }} {{ post.author.last_name }}</b>
             </small>
             <br>
             {{ post.body }}
