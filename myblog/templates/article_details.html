@@ -9,22 +9,31 @@
 
 <br>
 <div class="container">
-    <div class="row">
-        <div class="col">
+    <div class="row justify-content-center">
+        <div class="col-sm-10">
             <h1>
                 {{ post.title }}
             </h1><br>
             <small>
-                By: <b>{{ post.author.first_name }} {{ post.author.last_name }}</b>
+                By: <b>{{ post.author.first_name }}
+                {{ post.author.last_name }}</b>
+                 - {{ post.post_date }}
+                <small><a href="{% url 'update_post' post.pk %}">(edit)</a></small> <small><a href="{% url 'delete_post' post.pk %}">(delete)</a></small>
             </small>
+            <hr>
             <br>
             {{ post.body }}
-
+            <br>
         </div>
     </div>
-    <br>
-    <a href="{% url 'home' %}"><button type="button" class="btn btn-secondary">Back</button></a>
-
+    <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-2">
+            <br>
+            <a href="{% url 'home' %}" style="align-content: end"><button type="button" class="btn btn-success">Back</button></a>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

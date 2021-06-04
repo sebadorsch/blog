@@ -6,8 +6,8 @@
 
 <br>
 <div class="container">
-    <div class="row">
-        <div class="col">
+    <div class="row justify-content-center">
+        <div class="col-sm-11">
             <h1>
                 My Blog!
             </h1><br>
@@ -15,7 +15,10 @@
             {% for post in object_list %}
                 <li>
                 <a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a>
-                 - {{ post.author.first_name }} {{ post.author.last_name }} <br>
+                    - {{ post.author.first_name }} {{ post.author.last_name }}
+                    - {{ post.post_date }} -
+                    <small><a href="{% url 'update_post' post.pk %}">(edit)</a></small> <small>
+                    <a href="{% url 'delete_post' post.pk %}">(delete)</a></small> <br>
                 {{ post.body }}
                 </li>
                 <br>

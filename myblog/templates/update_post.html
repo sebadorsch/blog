@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 
-{% block title %} Edita Blog Post {% endblock %}
+{% block title %} Edit Blog Post {% endblock %}
 {% block content %}
 
 <br>
@@ -13,11 +13,16 @@
             </h1><br>
             <div class="form-group">
                 <form method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button class="btn btn-primary">Update</button>
-            </form>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </form>
             </div>
+            <br>
+        </div>
+    </div>
+    <div class="row justify-content-end">
+        <div class="col-sm-3">
+            <button class="btn btn-primary">Update</button>
             <br>
         </div>
     </div>
