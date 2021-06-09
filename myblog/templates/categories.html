@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+{% if category_posts %}
+
+    <br>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-11">
+                <h1>
+                    {{cats}}
+                </h1><br>
+                <ul>
+                {% for post in category_posts %}
+                    <li>
+                        <a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a>
+                        - <i>{{ post.author.first_name }} {{ post.author.last_name }}</i>
+                        - {{ post.post_date }}
+
+                        {% if user.is_authenticated %}
+                            -
+                            <small><a href="{% url 'update_post' post.pk %}">(edit)</a></small>
+                            <small><a href="{% url 'delete_post' post.pk %}">(delete)</a></small>
+                        {% endif %}<br>
+                        {{ post.body|slice:":300" }}
+                    </li>
+                    <br>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% else %}
+    Error: Page does not exist
+{% endif %}
+{% endblock %}
+
+
+

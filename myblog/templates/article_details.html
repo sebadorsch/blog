@@ -15,14 +15,16 @@
                 {{ post.title }}
             </h1><br>
             <small>
-                By: <b>{{ post.author.first_name }}
-                {{ post.author.last_name }}</b>
+                By: <b><i>{{ post.author.first_name }}
+                {{ post.author.last_name }} </i></b>
                  - {{ post.post_date }}
-                <small><a href="{% url 'update_post' post.pk %}">(edit)</a></small> <small><a href="{% url 'delete_post' post.pk %}">(delete)</a></small>
+                {% if user.is_authenticated %}
+                    <small><a href="{% url 'update_post' post.pk %}">(edit)</a></small> <small><a href="{% url 'delete_post' post.pk %}">(delete)</a></small>
+                {% endif %}
             </small>
             <hr>
             <br>
-            {{ post.body }}
+            {{ post.body|safe }}
             <br>
         </div>
     </div>
