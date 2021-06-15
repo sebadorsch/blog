@@ -38,6 +38,25 @@
             <br>
             <a href="{% url 'home' %}" style="align-content: end"><button type="button" class="btn btn-success">Back</button></a>
         </div>
+        <div class="col-sm-7">
+        </div>
+        <div class="col-sm-1">
+            <br>
+            <form action="{% url 'like_post' post.pk %}" method="'POST">
+                {% comment %}
+                {% csrf_token %}
+                {% endcomment %}
+                <button type="submit", name="post_id", value="{{post.id}}" class="btn btn-outline-info btn-sm">Like</button>
+            </form>
+        </div>
+        <div class="col-sm-1">
+        </div>
+    </div>
+    <div class="row row justify-content-center">
+        <div class="col-sm-10">
+            <br>
+            <hr>
+        </div>
     </div>
 </div>
 
