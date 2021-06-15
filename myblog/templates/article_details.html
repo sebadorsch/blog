@@ -19,7 +19,10 @@
                 {{ post.author.last_name }} </i></b>
                  - {{ post.post_date }}
                 {% if user.is_authenticated %}
-                    <small><a href="{% url 'update_post' post.pk %}">(edit)</a></small> <small><a href="{% url 'delete_post' post.pk %}">(delete)</a></small>
+                    {% if user.id == post.author.id %}
+                    <small><a href="{% url 'update_post' post.pk %}">(edit)</a></small>
+                    <small><a href="{% url 'delete_post' post.pk %}">(delete)</a></small>
+                    {% endif %}
                 {% endif %}
             </small>
             <hr>
