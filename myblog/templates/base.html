@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="">
 
     <title>
         {% block title %}
@@ -14,7 +15,7 @@
         {% endblock %}
     </title>
   </head>
-  <body>
+  <body style="font-family: 'Century Schoolbook L'; background-color: #f3f3f3">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
@@ -24,6 +25,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
+            {% endif %}
             {% if cat_menu %}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,30 +44,23 @@
               </ul>
             </li>
             {% endif %}
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'register' %}">Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">Login</a>
-            </li>
-            {% endif %}
-
           </ul>
           <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-info" type="submit">Search</button>
+            <button class="btn btn-outline-warning" type="submit">Search</button>
           </form>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}" style="color: #FC242A">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}" style="color: #6BC638">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'register' %}" style="color: #6BC638">Register</a>
+            </li>
+          {% endif %}
         </div>
       </div>
     </nav>
