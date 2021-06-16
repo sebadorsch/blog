@@ -42,10 +42,8 @@
         </div>
         <div class="col-sm-1">
             <br>
-            <form action="{% url 'like_post' post.pk %}" method="'POST">
-                {% comment %}
+            <form action="{% url 'like_post' post.pk %}" method="POST">
                 {% csrf_token %}
-                {% endcomment %}
                 <button type="submit", name="post_id", value="{{post.id}}" class="btn btn-outline-info btn-sm">Like</button>
             </form>
         </div>
