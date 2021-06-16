@@ -50,16 +50,20 @@
             <button class="btn btn-outline-warning" type="submit">Search</button>
           </form>
           {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}" style="color: #FC242A">Logout</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}" style="color: #6BC638">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'register' %}" style="color: #6BC638">Register</a>
-            </li>
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}" style="color: #e54113">Logout</a>
+              </li>
+            </ul>
+          {% else %}
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}" style="color: #6BC638">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}" style="color: #6BC638">Register</a>
+              </li>
+            </ul>
           {% endif %}
         </div>
       </div>
