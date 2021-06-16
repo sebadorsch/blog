@@ -8,23 +8,31 @@ from django.http import HttpResponseRedirect
 
 def LikeView(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
-    liked = False
+    liked = True
+    disliked = False
     if post.likes.filter(id=request.user.id).exists():
         post.likes.remove(request.user)
         liked = False
     else:
+        if post.dislikes.filter(id=request.user.id).exists():
+            post.dislikes.remove(request.user)
+            disliked = False
         post.likes.add(request.user)
         liked = True
+
     return HttpResponseRedirect(reverse('article-detail', args=[str(pk)]))
 
 
 def DislikeView(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
-    disliked = False
+    disliked = True
     if post.dislikes.filter(id=request.user.id).exists():
         post.dislikes.remove(request.user)
         disliked = False
     else:
+        if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)
+            liked = False
         post.dislikes.add(request.user)
         disliked = True
     return HttpResponseRedirect(reverse('article-detail', args=[str(pk)]))
