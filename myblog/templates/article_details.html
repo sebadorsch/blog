@@ -29,6 +29,9 @@
             <br>
             {{ post.body|safe }}
             <br>
+            {% if post.header_image %}
+            <img src="{{ post.header_image.url }}" class="img-fluid" alt="">
+            {% endif %}
         </div>
     </div>
     <div class="row">
@@ -93,15 +96,5 @@
     </div>
 </div>
 
-
-
-<script>
-    if ("like activo") {
-        "Mostrar boton like activo"
-          }
-    else if ("dislike activo"){
-        "Mostrar boton dislike activo"
-    }
-</script>
 
 {% endblock %}
