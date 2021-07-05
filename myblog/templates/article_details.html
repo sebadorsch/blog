@@ -21,8 +21,7 @@
             <small>
                 By:
                 <a href="{% url 'show_profile_page' post.author.profile.id %}">
-                    <b><i>{{ post.author.first_name }}
-                    {{ post.author.last_name }} </i></b>
+                    <b><i>{{ post.author.first_name }} {{ post.author.last_name }} </i></b>
                 </a>
                 - {{ post.post_date }}
                 {% if user.is_authenticated %}
