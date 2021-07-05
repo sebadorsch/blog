@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
     {% block title %}
         {{ post.title_tag }}
@@ -9,28 +10,21 @@
 
 <br>
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-sm-10">
-            <h1>
-                {{ post.title }}
-            </h1><br>
-        </div>
-    </div>
-
     <div class="row justify-content-center align-items-end">
-        <div class="col-sm-1">
-            {% if post.author.profile.profile_pic.url %}
-            <img src="{{ post.author.profile.profile_pic.url }}" class="rounded-circle" alt="..." width="100" height="100">
-            {% else %}
-            {% load static %}
-            <img src="{% static 'blog/perfil_defecto.jpg' %}}" class="rounded-circle" width="100" height="100">
-            {% endif %}
+        <div class="col-sm-5">
+            <h1 style="margin-bottom: 0px">
+                {{ post.title }}
+            </h1>
         </div>
-        <div class="col-sm-9">
+
+        <div class="col-sm-4" style="text-align: right">
             <small>
-                By: <b><i>{{ post.author.first_name }}
-                {{ post.author.last_name }} </i></b>
-                 - {{ post.post_date }}
+                By:
+                <a href="{% url 'show_profile_page' post.author.profile.id %}">
+                    <b><i>{{ post.author.first_name }}
+                    {{ post.author.last_name }} </i></b>
+                </a>
+                - {{ post.post_date }}
                 {% if user.is_authenticated %}
                     {% if user.id == post.author.id %}
                     <small><a href="{% url 'update_post' post.pk %}">(edit)</a></small>
@@ -38,6 +32,13 @@
                     {% endif %}
                 {% endif %}
             </small>
+        </div>
+        <div class="col-sm-1">
+            {% if post.author.profile.profile_pic %}
+            <img src="{{ post.author.profile.profile_pic.url }}" class="img-fluid rounded-circle" width="100" height="100">
+            {% else %}
+            <img src="{% static 'blog/images/perfil_defecto.png' %}" class="img-fluid rounded-circle" width="100" height="100">
+            {% endif %}
         </div>
         <div class="col-sm-10">
             <hr>

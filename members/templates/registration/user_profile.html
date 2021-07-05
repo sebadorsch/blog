@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block title %}
+        {{ post.title_tag }}
+    {% endblock %}
+
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-12">
+            <br>
+            <h2>
+                User Profile
+            </h2><br>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-sm-12">
+            <div class="card mb-3">
+              <div class="row g-0">
+                <div class="col-md-4">
+                    {% if page_user.profile_pic %}
+                    <img src="{{ page_user.profile_pic.url }}" class="img-fluid">
+                    {% else %}
+                    <img src="{% static 'blog/images/perfil_defecto.png' %}" class="img-fluid">
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h4 class="card-title">{{ page_user.user.first_name }} {{ page_user.user.last_name }}</h4>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue risus nec rutrum iaculis. Proin maximus lacus tellus. Duis vel neque semper, malesuada leo ac, viverra risus. Aenean a diam et ex tempor consectetur ut non sem. Nullam vel nunc ac quam ornare sodales. Praesent lorem dolor, tempor in lacinia sit amet, placerat id arcu. Cras vehicula felis vel velit cursus, vel finibus elit dictum. Mauris non dui faucibus, sodales sem in, vulputate ligula. Nullam dictum feugiat magna in pretium. In dapibus, elit ut tristique lacinia, leo sem rutrum felis, ut tristique diam sapien vel turpis. Morbi suscipit erat sollicitudin, finibus ex vel, euismod quam. Nunc et justo lobortis, convallis arcu a, maximus lacus. Donec efficitur tortor ut lorem suscipit tempor. Vestibulum tempor bibendum rutrum. Integer ex dolor, tincidunt non pulvinar id, sodales non massa.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
