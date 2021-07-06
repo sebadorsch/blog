@@ -20,6 +20,7 @@
         <div class="col-sm-4" style="text-align: right">
             <small>
                 By:
+                <!--<a href="{% url 'show_profile_page' post.author.profile.id %}">-->
                 <a href="{% url 'show_profile_page' post.author.profile.id %}">
                     <b><i>{{ post.author.first_name }} {{ post.author.last_name }} </i></b>
                 </a>
