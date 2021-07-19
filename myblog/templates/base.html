@@ -32,9 +32,6 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'edit_profile' %}">Edit Profile</a>
-            </li>
             {% endif %}
             {% if cat_menu %}
             <li class="nav-item dropdown">
@@ -54,6 +51,19 @@
             <button class="btn btn-outline-warning" type="submit">Search</button>
           </form>
           {% if user.is_authenticated %}
+            {% if user.profile.id %}
+              <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'show_profile_page' user.id %}" style="color: #4FD8D4">Profile</a>
+                </li>
+              </ul>
+            {% else %}
+              <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="#" style="color: #4FD8D4">Create Profile</a>
+                </li>
+              </ul>
+            {% endif %}
             <ul class="navbar-nav mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'logout' %}" style="color: #e54113">Logout</a>
@@ -62,7 +72,7 @@
           {% else %}
             <ul class="navbar-nav mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}" style="color: #6BC638">Login</a>
+                <a class="nav-link" href="{% url 'login' %}" style="color: #4FD8D4">Login</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'register' %}" style="color: #6BC638">Register</a>
