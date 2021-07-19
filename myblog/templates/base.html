@@ -52,15 +52,20 @@
           </form>
           {% if user.is_authenticated %}
             {% if user.profile.id %}
-              <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'show_profile_page' user.id %}" style="color: #4FD8D4">Profile</a>
-                </li>
-              </ul>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{user.first_name}}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="{% url 'show_profile_page' user.profile.id %}">Profile</a></li>
+                  <li><a class="dropdown-item" href="{% url 'edit_profile_page' user.profile.id %}">Edit Profile</a></li>
+                  <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Settings</a></li>
+                </ul>
+              </li>
             {% else %}
               <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link" href="#" style="color: #4FD8D4">Create Profile</a>
+                  <a class="nav-link" href="{% url 'create_profile_page' %}" style="color: #4FD8D4">Create Profile</a>
                 </li>
               </ul>
             {% endif %}
