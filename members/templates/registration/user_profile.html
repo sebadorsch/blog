@@ -14,7 +14,7 @@
         <div class="col-sm-12">
             <br>
             <h2>
-                User Profile
+                {{ page_user.user.first_name }} Profile
             </h2><br>
         </div>
     </div>
@@ -34,7 +34,7 @@
                   <div class="card-body">
                     <h4 class="card-title">{{ page_user.user.first_name }} {{ page_user.user.last_name }}
                         {% if user.is_authenticated %}
-                            <small style="font-size: medium"> - <a href="{% url 'edit_profile' %}">(edit)</a></small>
+                            <small style="font-size: medium"> - <a href="{% url 'edit_profile_page' user.profile.id %}">(edit)</a></small>
                         {% endif %}<br>
                     </h4>
                     <p class="small text-muted">
