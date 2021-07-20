@@ -106,10 +106,38 @@
     <div class="row row justify-content-center">
         <div class="col-sm-10">
             <br>
-            <hr>
         </div>
     </div>
+    {% if not post.comments.all %}
+        <div class="row justify-content-center">
+            <div class="col-sm-10">
+                <h3>Add a comment</h3>
+            </div>
+        </div>
+    {% else %}
+        <div class="row justify-content-center">
+            <div class="col-sm-10">
+                <br>
+                <h3>Comments</h3>
+                <hr>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-10">
+                {% for comment in post.comments.all %}
+                    <strong>
+                        {{ comment.name }} -
+                        {{ comment.date_added }}
+                    </strong>
+                    <br>
+                    {{ comment.body }}
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 </div>
+<br>
 
 
 
