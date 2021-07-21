@@ -53,7 +53,7 @@
         <div class="col-sm-1"></div>
         <div class="col-sm-2">
             <br>
-            <a href="{% url 'home' %}" style="align-content: end"><button type="button" class="btn btn-success">Back</button></a>
+            <a href="{% url 'home' %}" style="align-content: end"><button type="button" class="btn btn-secondary">Back</button></a>
         </div>
         <div class="col-sm-6"></div>
         <div class="col-sm-2" style="text-align: end">
@@ -108,37 +108,33 @@
             <br>
         </div>
     </div>
-    {% if not post.comments.all %}
-        <div class="row justify-content-center">
-            <div class="col-sm-10">
-                <h3>Add a comment</h3>
-            </div>
+    <div class="row justify-content-center">
+        <div class="col-sm-10">
+            <br>
+            <h3>Comments</h3>
+            <hr>
         </div>
-    {% else %}
-        <div class="row justify-content-center">
-            <div class="col-sm-10">
-                <br>
-                <h3>Comments</h3>
-                <hr>
-            </div>
-        </div>
+    </div>
+    {% if post.comments.all %}
         <div class="row justify-content-center">
             <div class="col-sm-10">
                 {% for comment in post.comments.all %}
-                    <strong>
+                    <h6><strong>
                         {{ comment.name }} -
                         {{ comment.date_added }}
-                    </strong>
-                    <br>
+                    </strong></h6>
                     {{ comment.body }}
                     <hr>
                 {% endfor %}
             </div>
         </div>
     {% endif %}
+    <div class="row justify-content-center">
+        <div class="col-sm-10" style="text-align: right">
+            <a href="{% url 'add_comment' post.id %}"><button type="button" class="btn btn-success">Add Comment</button></a>
+        </div>
+    </div>
 </div>
 <br>
-
-
 
 {% endblock %}
