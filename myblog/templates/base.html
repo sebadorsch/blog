@@ -9,15 +9,26 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="">
 
+    {% load static %}
+      <link rel="stylesheet" type="text/css" href="{% static 'blog/css/style.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+
     <title>
         {% block title %}
             My Blog
         {% endblock %}
     </title>
   </head>
-  <body style="font-family: 'Century Schoolbook L'; background-color: #f3f3f3">
+  <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
       <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'home' %}">My Blog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,30 +37,33 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {{user.first_name}}
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="{% url 'show_profile_page' user.profile.id %}">Profile</a></li>
-                <li><a class="dropdown-item" href="{% url 'edit_profile_page' user.profile.id %}">Edit Profile</a></li>
-                <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Account</a></li>
-                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-              </ul>
-            </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
+              </li>
             {% endif %}
           </ul>
-
           <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-warning" type="submit">Search</button>
           </form>
+          {% if user.is_authenticated %}
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{user.first_name}}
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'show_profile_page' user.profile.id %}">Profile</a></li>
+                  <li><a class="dropdown-item" href="{% url 'edit_profile_page' user.profile.id %}">Edit Profile</a></li>
+                  <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Account</a></li>
+                  <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+          {% endif %}
           {% if user.is_authenticated %}
             {% if user.profile.id %}
 
