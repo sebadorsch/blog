@@ -37,6 +37,7 @@ def DislikeView(request, pk):
         disliked = True
     return HttpResponseRedirect(reverse('article-detail', args=[str(pk)]))
 
+ 
 
 class ArticleDetailView(DetailView):
     model = Post
